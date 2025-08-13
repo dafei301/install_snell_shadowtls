@@ -1,0 +1,21 @@
+cat <<'EOF' > /etc/sysctl.d/99-custom.conf
+# ====== 系统文件句柄限制 ======
+fs.file-max = 1048576
+
+# ====== 代理服务优化 - 网络缓冲 & TCP 参数 ======
+net.core.rmem_max = 33554432
+net.core.wmem_max = 33554432
+net.ipv4.tcp_rmem = 4096 262144 33554432
+net.ipv4.tcp_wmem = 4096 262144 33554432
+
+# TCP 性能优化
+net.ipv4.tcp_slow_start_after_idle = 0
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_fack = 1
+net.ipv4.tcp_mtu_probing = 1
+net.ipv4.ip_local_port_range = 1024 65535
+
+# 内存管理优化
+vm.swappiness = 5
+EOF
+
