@@ -1,4 +1,5 @@
-cat <<'EOF' > /etc/sysctl.d/99-custom.conf
+cp /etc/sysctl.d/sysctl.conf /etc/sysctl.d/sysctl.conf.bak && cat << 'EOF' >> /etc/sysctl.d/sysctl.conf
+
 # ====== 系统文件句柄限制 ======
 fs.file-max = 1048576
 
@@ -18,4 +19,3 @@ net.ipv4.ip_local_port_range = 1024 65535
 # 内存管理优化
 vm.swappiness = 5
 EOF
-
