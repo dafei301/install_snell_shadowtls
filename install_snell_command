@@ -15,7 +15,7 @@ apt upgrade -y
 apt install -y unzip wget
 
 # 下载 Snell Server
-SNELL_VERSION="v5.0.0"
+SNELL_VERSION="v5.0.1"
 SNELL_ZIP="snell-server-${SNELL_VERSION}-linux-amd64.zip"
 SNELL_URL="https://dl.nssurge.com/snell/${SNELL_ZIP}"
 wget "$SNELL_URL"
