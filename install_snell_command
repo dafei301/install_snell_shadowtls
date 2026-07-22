@@ -9,13 +9,12 @@ set -euo pipefail
 
 # 更新包索引并升级已安装的软件包
 apt update
-apt upgrade -y
 
 # 安装 unzip 工具
 apt install -y unzip wget
 
 # 下载 Snell Server
-SNELL_VERSION="v5.0.1"
+SNELL_VERSION="v6.0.0rc"
 SNELL_ZIP="snell-server-${SNELL_VERSION}-linux-amd64.zip"
 SNELL_URL="https://dl.nssurge.com/snell/${SNELL_ZIP}"
 wget "$SNELL_URL"
