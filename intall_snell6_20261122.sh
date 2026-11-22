@@ -23,7 +23,7 @@ install -o root -g root -m 755 "$workdir/snell-server" /usr/local/bin/snell-serv
 psk="$(openssl rand -hex 32)"
 install -d -o root -g root -m 700 /etc/snell
 umask 077
-printf '[snell-server]\nlisten = 0.0.0.0:7177\npsk = %s\nmode = default\n' "$psk" > /etc/snell/snell-server.conf
+printf '[snell-server]\nlisten = 0.0.0.0:18280,[::]:18280\npsk = %s\nmode = default\ndns-ip-preference = prefer-ipv4\n' "$psk" > /etc/snell/snell-server.conf
 chmod 600 /etc/snell/snell-server.conf
 
 # 创建以非 root 身份运行的 systemd 服务。
@@ -55,7 +55,7 @@ systemctl daemon-reload
 systemctl enable --now snell
 sleep 1
 systemctl is-active --quiet snell || { journalctl -u snell -n 20 --no-pager; exit 1; }
-ss -H -lnt 'sport = :7177' | grep -q . || { echo 'Snell 未监听 TCP 7177'; exit 1; }
+ss -H -lnt 'sport = :18280' | grep -q . || { echo 'Snell 未监听 TCP 18280'; exit 1; }
 
 # 查询出口 IPv4 并输出 Surge 客户端配置；PSK 请妥善保管。
 server_ip="$(curl -4fsS --max-time 8 https://api.ipify.org || true)"
