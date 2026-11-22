@@ -9,7 +9,7 @@ set -euo pipefail
 
 # 安装下载、解压和生成密钥所需的工具。
 apt-get update
-apt-get install -y unzip
+apt-get install -y --no-install-recommends ca-certificates curl openssl unzip iproute2
 
 # 从 Surge 官方下载并测试 Snell v6.0.0 安装包。
 workdir="$(mktemp -d)"
