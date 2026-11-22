@@ -60,6 +60,6 @@ ss -H -lnt 'sport = :18280' | grep -q . || { echo 'Snell 未监听 TCP 18280'; e
 # 查询出口 IPv4 并输出 Surge 客户端配置；PSK 请妥善保管。
 server_ip="$(curl -4fsS --max-time 8 https://api.ipify.org || true)"
 [ -n "$server_ip" ] || server_ip='你的VPS公网IPv4'
-echo 'Snell v6.0.0 已启动，TCP 端口：7177'
+echo 'Snell v6.0.0 已启动，TCP 端口：18280'
 echo "PSK: $psk"
-echo "Surge: DMIT-LAX = snell, $server_ip, 7177, psk=$psk, version=6, mode=default"
+echo "Surge: DMIT-LAX = snell, $server_ip, 18280, psk=$psk, version=6, mode=default"
